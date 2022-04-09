@@ -5,8 +5,7 @@ import axios from "axios";
 
 function App() {
   const [quote, setQuote] = useState({});
-  const [errorMessage, setErrorMessage] = useState("");
-  const [loadingQuote, setLoadingQuote] = useState(false);
+
 
   useEffect(() => {
     fetchRandomQuote();
@@ -16,14 +15,11 @@ function App() {
 
   async function fetchRandomQuote() {
     try {
-      setLoadingQuote(true);
-      setErrorMessage("");
       const quoteObject = await axios.get("https://api.quotable.io/random");
       setQuote(quoteObject.data);
-      setLoadingQuote(false);
+      
     } catch (error) {
-      setErrorMessage(error.message);
-      setLoadingQuote(false);
+      console.log(error);
     }
   }
 
